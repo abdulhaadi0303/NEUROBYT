@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+:root {
+  --color-void: #1a1a1a;
+  --color-panel: #232323;
+  --color-panel-line: #333333;
+  --color-signal: #76b900;
+  --color-signal-dim: #5c9400;
+  --color-ink: #f2f2ed;
+  --color-ink-muted: #9c9c96;
+}
+
+@theme inline {
+  --color-void: var(--color-void);
+  --color-panel: var(--color-panel);
+  --color-panel-line: var(--color-panel-line);
+  --color-signal: var(--color-signal);
+  --color-signal-dim: var(--color-signal-dim);
+  --color-ink: var(--color-ink);
+  --color-ink-muted: var(--color-ink-muted);
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-signal);
+  color: var(--color-void);
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
