@@ -7,10 +7,20 @@ import Reveal from "@/components/Reveal";
 import CircuitBackground from "@/components/CircuitBackground";
 import ProcessSteps from "@/components/ProcessSteps";
 
+const description =
+  "Web, mobile, cloud, AI, and business services from NeuroBYT — one small senior team covering the full stack.";
+
 export const metadata: Metadata = {
-  title: "Services — NeuroBYT",
-  description:
-    "Web, mobile, cloud, AI, and business services from NeuroBYT — one team covering the full stack.",
+  title: "Services",
+  description,
+  alternates: {
+    canonical: "/services",
+  },
+  openGraph: {
+    url: "/services",
+    title: "Services | NeuroBYT",
+    description,
+  },
 };
 
 export default function ServicesPage() {

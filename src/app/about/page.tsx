@@ -6,10 +6,20 @@ import Reveal from "@/components/Reveal";
 import CircuitBackground from "@/components/CircuitBackground";
 import { team } from "@/lib/team";
 
+const description =
+  "NeuroBYT is a small, senior software and AI engineering team. Here's who we are and how we work.";
+
 export const metadata: Metadata = {
-  title: "About Us — NeuroBYT",
-  description:
-    "NeuroBYT is a small, senior software and AI engineering team. Here's who we are and how we work.",
+  title: "About Us",
+  description,
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    url: "/about",
+    title: "About Us | NeuroBYT",
+    description,
+  },
 };
 
 const values = [

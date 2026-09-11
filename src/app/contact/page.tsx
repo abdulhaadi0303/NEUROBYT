@@ -6,10 +6,20 @@ import CircuitBackground from "@/components/CircuitBackground";
 import ContactForm from "@/components/ContactForm";
 import Faq from "@/components/Faq";
 
+const description =
+  "Tell NeuroBYT about your project — we reply within a business day.";
+
 export const metadata: Metadata = {
-  title: "Contact Us — NeuroBYT",
-  description:
-    "Tell NeuroBYT about your project — we reply within a business day.",
+  title: "Contact Us",
+  description,
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    url: "/contact",
+    title: "Contact Us | NeuroBYT",
+    description,
+  },
 };
 
 const contactDetails = [
@@ -53,7 +63,7 @@ const faqItems = [
   {
     question: "I'm not sure which service I need — can I still reach out?",
     answer:
-      "Yes — that's exactly what the \"not sure yet\" option in the form is for. Tell us the problem you're solving and we'll help figure out the right approach.",
+      'Yes — that\'s exactly what the "not sure yet" option in the form is for. Tell us the problem you\'re solving and we\'ll help figure out the right approach.',
   },
 ];
 
@@ -63,12 +73,15 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-panel-line/60">
         <CircuitBackground className="pointer-events-none absolute inset-0 h-full w-full text-signal" />
+
         <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
           <p className="text-sm text-ink-muted">Contact us</p>
+
           <TypewriterHeading
             text="Tell us what you're building."
             className="mt-5 min-h-[1.3em] max-w-2xl font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl"
           />
+
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
             Whether you have a fully scoped project or just a rough idea,
             fill out the form below and we'll get back to you within a
@@ -84,23 +97,30 @@ export default function ContactPage() {
             <h2 className="font-display text-xl font-medium">
               Contact details
             </h2>
+
             <div className="mt-6 flex flex-col gap-6">
               {contactDetails.map((detail) => {
                 const Icon = detail.icon;
+
                 const content = (
                   <div className="flex items-start gap-3">
                     <Icon
                       size={18}
                       className="mt-0.5 shrink-0 text-signal"
                     />
+
                     <div>
                       <p className="text-xs uppercase tracking-wide text-ink-muted">
                         {detail.label}
                       </p>
-                      <p className="mt-1 text-sm text-ink">{detail.value}</p>
+
+                      <p className="mt-1 text-sm text-ink">
+                        {detail.value}
+                      </p>
                     </div>
                   </div>
                 );
+
                 return detail.href ? (
                   <a
                     key={detail.label}
@@ -129,7 +149,10 @@ export default function ContactPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.1} className="rounded-sm border border-panel-line bg-panel/30 p-6 md:p-8">
+          <Reveal
+            delay={0.1}
+            className="rounded-sm border border-panel-line bg-panel/30 p-6 md:p-8"
+          >
             <ContactForm />
           </Reveal>
         </div>
@@ -143,6 +166,7 @@ export default function ContactPage() {
               Before you reach out
             </h2>
           </Reveal>
+
           <Reveal delay={0.1} className="mt-8">
             <Faq items={faqItems} />
           </Reveal>

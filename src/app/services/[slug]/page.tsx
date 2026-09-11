@@ -21,8 +21,16 @@ export async function generateMetadata({
   const service = services.find((s) => s.slug === slug);
   if (!service) return {};
   return {
-    title: `${service.name} — NeuroBYT`,
+    title: service.name,
     description: service.summary,
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
+    openGraph: {
+      url: `/services/${service.slug}`,
+      title: `${service.name} | NeuroBYT`,
+      description: service.summary,
+    },
   };
 }
 
