@@ -2,10 +2,15 @@ import Link from "next/link";
 import { ArrowUpRight, ArrowRight, Quote } from "lucide-react";
 import WaveMark from "@/components/WaveMark";
 import HeroWidget from "@/components/HeroWidget";
+import HeroGlow from "@/components/HeroGlow";
+import StaggerWords from "@/components/StaggerWords";
+import ServiceMarquee from "@/components/ServiceMarquee";
 import TypewriterHeading from "@/components/TypewriterHeading";
 import Reveal from "@/components/Reveal";
 import CircuitBackground from "@/components/CircuitBackground";
 import ProcessSteps from "@/components/ProcessSteps";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import TiltCard from "@/components/TiltCard";
 import Faq from "@/components/Faq";
 import { services, engagementProcess } from "@/lib/services";
 
@@ -28,6 +33,13 @@ const featuredProjects = [
     description:
       "Replace with a one to two sentence summary: what the client's problem was, what we built, and the measurable result.",
   },
+];
+
+const stats = [
+  { value: 12, suffix: "", label: "Core services" },
+  { value: 100, suffix: "%", label: "Code ownership, yours" },
+  { value: 12, suffix: "h", label: "Average reply time" },
+  { value: 4, suffix: "", label: "Step process, start to launch" },
 ];
 
 const faqItems = [
@@ -61,44 +73,46 @@ export default function Home() {
         <WaveMark className="pointer-events-none absolute -right-24 -top-16 h-[480px] w-[480px] text-signal/[0.06] md:-right-10" />
         <CircuitBackground className="pointer-events-none absolute inset-0 h-full w-full text-signal" />
 
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-16 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pb-24 md:pt-24">
-          <div>
-            <p className="text-sm text-ink-muted">
-              Software, AI & digital engineering
-            </p>
-            <TypewriterHeading
-              text="We build and automate the systems your business runs on."
-              className="mt-5 min-h-[3.3em] font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl"
-            />
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
-              NeuroBYT is a small, senior team shipping websites, web apps,
-              custom software, and AI-driven automation for businesses that
-              need it done right the first time. No account managers relaying
-              messages, no junior engineers learning on your budget — just
-              the people actually building your project, from the first call
-              to long after launch.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link
-                href="/contact"
-                className="rounded-sm bg-signal px-6 py-3 text-sm font-medium text-void transition-transform hover:-translate-y-0.5 hover:bg-signal-dim"
-              >
-                Start a project
-              </Link>
-              <Link
-                href="/projects"
-                className="rounded-sm border border-panel-line px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-signal hover:text-signal"
-              >
-                See our work
-              </Link>
+        <HeroGlow>
+          <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-16 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pb-24 md:pt-24">
+            <div>
+              <p className="text-sm text-ink-muted">
+                Software, AI & digital engineering
+              </p>
+              <TypewriterHeading
+                text="We build and automate the systems your business runs on."
+                className="mt-5 min-h-[3.3em] font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl"
+              />
+              <StaggerWords
+                delay={1.3}
+                text="NeuroBYT is a small, senior team shipping websites, web apps, custom software, and AI-driven automation for businesses that need it done right the first time. No account managers relaying messages, no junior engineers learning on your budget — just the people actually building your project, from the first call to long after launch."
+                className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
+              />
+              <div className="mt-9 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="rounded-sm bg-signal px-6 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)]"
+                >
+                  Start a project
+                </Link>
+                <Link
+                  href="/projects"
+                  className="rounded-sm border border-panel-line px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-signal hover:text-signal"
+                >
+                  See our work
+                </Link>
+              </div>
+            </div>
+
+            <div className="flex justify-center md:justify-end">
+              <HeroWidget />
             </div>
           </div>
-
-          <div className="flex justify-center md:justify-end">
-            <HeroWidget />
-          </div>
-        </div>
+        </HeroGlow>
       </section>
+
+      {/* Scrolling services ticker */}
+      <ServiceMarquee />
 
       {/* Services — compact list, all 12 */}
       <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
@@ -127,121 +141,138 @@ export default function Home() {
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
-              <Reveal key={service.slug} delay={(i % 3) * 0.06}>
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="group flex h-full items-start gap-4 bg-void p-6 transition-colors hover:bg-panel"
-                >
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-panel-line bg-panel/60 text-signal transition-transform duration-300 group-hover:scale-110 group-hover:border-signal/50">
-                    <Icon size={20} strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 className="font-display text-base font-medium">
-                      {service.name}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                      {service.summary}
-                    </p>
-                  </div>
-                </Link>
+              <Reveal key={service.slug} delay={(i % 3) * 0.06} className="h-full">
+                <TiltCard className="h-full">
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="group flex h-full items-start gap-4 bg-void p-6 transition-colors hover:bg-panel"
+                  >
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-panel-line bg-panel/60 text-signal transition-transform duration-300 group-hover:scale-110 group-hover:border-signal/50">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-base font-medium">
+                        {service.name}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                        {service.summary}
+                      </p>
+                    </div>
+                  </Link>
+                </TiltCard>
               </Reveal>
             );
           })}
         </div>
       </section>
 
+      {/* Stats */}
+      <section className="border-y border-panel-line/60 bg-panel/40">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-10 px-6 py-16 md:grid-cols-4 md:py-20">
+          {stats.map((stat, i) => (
+            <Reveal key={stat.label} delay={i * 0.08}>
+              <AnimatedCounter
+                value={stat.value}
+                suffix={stat.suffix}
+                label={stat.label}
+              />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* How we work */}
+      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <Reveal>
+          <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
+            How we work
+          </h2>
+          <p className="mt-3 max-w-lg text-ink-muted">
+            A straightforward process, the same for a two-week landing
+            page or a three-month platform build.
+          </p>
+        </Reveal>
+        <ProcessSteps steps={engagementProcess} />
+      </section>
+
+      {/* Why us */}
       <section className="border-y border-panel-line/60 bg-panel/40">
         <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
           <Reveal>
             <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              How we work
+              Why teams work with us
             </h2>
-            <p className="mt-3 max-w-lg text-ink-muted">
-              A straightforward process, the same for a two-week landing
-              page or a three-month platform build.
-            </p>
           </Reveal>
-          <ProcessSteps steps={engagementProcess} />
-        </div>
-      </section>
-
-      {/* Why us */}
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <Reveal>
-          <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            Why teams work with us
-          </h2>
-        </Reveal>
-        <div className="mt-12 grid gap-10 md:grid-cols-2">
-          <Reveal delay={0.05}>
-            <h3 className="font-display text-lg font-medium">
-              Direct access, no account managers
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              You work with the engineers and designers building your
-              project, not a layer of people relaying messages between you
-              and them. Questions get answered by someone who knows the
-              answer, not someone who has to go ask.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h3 className="font-display text-lg font-medium">
-              Small team, senior work
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              We stay deliberately small so every project gets senior
-              attention instead of being spread thin across a bench of
-              juniors learning on your budget.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <h3 className="font-display text-lg font-medium">
-              You own everything
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              Code, infrastructure, credentials, and design files are yours
-              from day one. No lock-in, and no dependency on us to keep it
-              running after the engagement ends.
-            </p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <h3 className="font-display text-lg font-medium">
-              Scope and price agreed up front
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              We scope the work before we start, so you know the cost and
-              timeline before anything begins — not somewhere in the middle
-              of an open-ended invoice.
-            </p>
-          </Reveal>
+          <div className="mt-12 grid gap-10 md:grid-cols-2">
+            <Reveal delay={0.05}>
+              <h3 className="font-display text-lg font-medium">
+                Direct access, no account managers
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                You work with the engineers and designers building your
+                project, not a layer of people relaying messages between
+                you and them. Questions get answered by someone who knows
+                the answer, not someone who has to go ask.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h3 className="font-display text-lg font-medium">
+                Small team, senior work
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                We stay deliberately small so every project gets senior
+                attention instead of being spread thin across a bench of
+                juniors learning on your budget.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <h3 className="font-display text-lg font-medium">
+                You own everything
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                Code, infrastructure, credentials, and design files are
+                yours from day one. No lock-in, and no dependency on us to
+                keep it running after the engagement ends.
+              </p>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <h3 className="font-display text-lg font-medium">
+                Scope and price agreed up front
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                We scope the work before we start, so you know the cost
+                and timeline before anything begins — not somewhere in the
+                middle of an open-ended invoice.
+              </p>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* Featured projects teaser */}
-      <section className="border-t border-panel-line/60">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div>
-              <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-                Recent work
-              </h2>
-              <p className="mt-3 max-w-lg text-ink-muted">
-                A few projects we've shipped for clients recently.
-              </p>
-            </div>
-            <Link
-              href="/projects"
-              className="flex items-center gap-1.5 text-sm font-medium text-signal hover:text-signal-dim"
-            >
-              All projects
-              <ArrowUpRight size={16} />
-            </Link>
-          </Reveal>
+      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+        <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
+              Recent work
+            </h2>
+            <p className="mt-3 max-w-lg text-ink-muted">
+              A few projects we've shipped for clients recently.
+            </p>
+          </div>
+          <Link
+            href="/projects"
+            className="flex items-center gap-1.5 text-sm font-medium text-signal hover:text-signal-dim"
+          >
+            All projects
+            <ArrowUpRight size={16} />
+          </Link>
+        </Reveal>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {featuredProjects.map((project, i) => (
-              <Reveal key={i} delay={i * 0.08}>
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {featuredProjects.map((project, i) => (
+            <Reveal key={i} delay={i * 0.08} className="h-full">
+              <TiltCard className="h-full">
                 <div className="group flex h-full flex-col justify-between rounded-sm border border-panel-line bg-panel/40 p-6 transition-all hover:-translate-y-1 hover:border-signal/50 hover:shadow-lg hover:shadow-signal/5">
                   <div>
                     <p className="text-xs uppercase tracking-wide text-signal">
@@ -259,9 +290,9 @@ export default function Home() {
                     <ArrowRight size={14} />
                   </div>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              </TiltCard>
+            </Reveal>
+          ))}
         </div>
       </section>
 
@@ -304,7 +335,7 @@ export default function Home() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-transform hover:-translate-y-0.5 hover:bg-signal-dim"
+            className="mt-8 inline-block rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)]"
           >
             Get in touch
           </Link>

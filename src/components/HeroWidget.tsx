@@ -43,7 +43,11 @@ export default function HeroWidget() {
   const lines = script[step];
 
   return (
-    <div className="w-full max-w-md rounded-sm border border-panel-line bg-panel/80 shadow-2xl backdrop-blur">
+    <motion.div
+      animate={{ y: [0, -8, 0] }}
+      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      className="w-full max-w-md rounded-sm border border-panel-line bg-panel/80 shadow-2xl backdrop-blur"
+    >
       <div className="flex items-center gap-2 border-b border-panel-line px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-ink-muted/30" />
         <span className="h-2.5 w-2.5 rounded-full bg-ink-muted/30" />
@@ -86,6 +90,6 @@ export default function HeroWidget() {
           ))}
         </AnimatePresence>
       </div>
-    </div>
+    </motion.div>
   );
 }
