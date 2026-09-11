@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: "NeuroBYT — Software, AI & Cloud Engineering",
   description:
     "NeuroBYT builds web, mobile, cloud, and AI-powered products for teams that need to ship fast without cutting corners.",
+
+    verification: {
+      google: "X-CuiQsjaMbKeqn44Cjc0RN_cHQPxn-VeHvbNbqN6ro",
+    },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
