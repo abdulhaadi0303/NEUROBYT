@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import TypewriterHeading from "@/components/TypewriterHeading";
 import Reveal from "@/components/Reveal";
@@ -26,19 +27,18 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email",
-    value: "hello@neurobyt.com",
-    href: "mailto:hello@neurobyt.com",
+    value: "neurobyt@gmail.com.com",
+    href: "mailto:neurobyt@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+1 (000) 000-0000", // placeholder — replace with real number
-    href: "tel:+10000000000",
+    value: "+92 313 5536110", // placeholder — replace with real number
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "City, Country", // placeholder — replace with real location
+    value: "Mirpur,AJK,Pakistan", // placeholder — replace with real location
     href: undefined,
   },
   {
@@ -63,7 +63,7 @@ const faqItems = [
   {
     question: "I'm not sure which service I need — can I still reach out?",
     answer:
-      'Yes — that\'s exactly what the "not sure yet" option in the form is for. Tell us the problem you\'re solving and we\'ll help figure out the right approach.',
+      "Yes — that's exactly what the \"not sure yet\" option in the form is for. Tell us the problem you're solving and we'll help figure out the right approach.",
   },
 ];
 
@@ -74,19 +74,36 @@ export default function ContactPage() {
       <section className="relative overflow-hidden border-b border-panel-line/60">
         <CircuitBackground className="pointer-events-none absolute inset-0 h-full w-full text-signal" />
 
-        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
-          <p className="text-sm text-ink-muted">Contact us</p>
+        <div className="relative mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-[1.2fr_0.8fr] md:items-center md:py-20">
+          <div>
+            <p className="text-sm text-ink-muted">Contact us</p>
 
-          <TypewriterHeading
-            text="Tell us what you're building."
-            className="mt-5 min-h-[1.3em] max-w-2xl font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl"
-          />
+            <TypewriterHeading
+              text="Tell us what you're building."
+              className="mt-5 min-h-[1.3em] font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl"
+            />
 
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            Whether you have a fully scoped project or just a rough idea,
-            fill out the form below and we'll get back to you within a
-            business day with next steps.
-          </p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
+              Whether you have a fully scoped project or just a rough idea,
+              fill out the form below and we'll get back to you within a
+              business day with next steps.
+            </p>
+          </div>
+
+          <Reveal
+            delay={0.15}
+            className="group relative mx-auto h-56 w-full max-w-sm overflow-hidden rounded-sm border border-panel-line md:h-72"
+          >
+            <Image
+              src="/contact.webp"
+              alt="Get in touch with NeuroBYT"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 400px"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/30 via-transparent to-transparent" />
+          </Reveal>
         </div>
       </section>
 
@@ -142,7 +159,7 @@ export default function ContactPage() {
                   href="mailto:hello@neurobyt.com"
                   className="text-signal hover:text-signal-dim"
                 >
-                  hello@neurobyt.com
+                  neurobyt@gmail.com
                 </a>{" "}
                 and we'll pick it up just as quickly.
               </p>

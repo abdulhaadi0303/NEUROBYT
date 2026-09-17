@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Quote } from "lucide-react";
+import { ArrowUpRight, MessagesSquare, Users2, Lock, FileCheck2 } from "lucide-react";
 import WaveMark from "@/components/WaveMark";
 import HeroWidget from "@/components/HeroWidget";
 import HeroGlow from "@/components/HeroGlow";
@@ -12,34 +12,41 @@ import ProcessSteps from "@/components/ProcessSteps";
 import AnimatedCounter from "@/components/AnimatedCounter";
 import TiltCard from "@/components/TiltCard";
 import Faq from "@/components/Faq";
+import AmbientBlobs from "@/components/AmbientBlobs";
 import { services, engagementProcess } from "@/lib/services";
-
-const featuredProjects = [
-  {
-    title: "Project name",
-    category: "Web App · Fintech",
-    description:
-      "Replace with a one to two sentence summary: what the client's problem was, what we built, and the measurable result (time saved, revenue impact, users onboarded).",
-  },
-  {
-    title: "Project name",
-    category: "Shopify · E-commerce",
-    description:
-      "Replace with a one to two sentence summary: what the client's problem was, what we built, and the measurable result.",
-  },
-  {
-    title: "Project name",
-    category: "AI Automation",
-    description:
-      "Replace with a one to two sentence summary: what the client's problem was, what we built, and the measurable result.",
-  },
-];
 
 const stats = [
   { value: 12, suffix: "", label: "Core services" },
   { value: 100, suffix: "%", label: "Code ownership, yours" },
-  { value: 12, suffix: "h", label: "Average reply time" },
+  { value: 24, suffix: "h", label: "Average reply time" },
   { value: 4, suffix: "", label: "Step process, start to launch" },
+];
+
+const whyUs = [
+  {
+    icon: MessagesSquare,
+    title: "Direct access, no account managers",
+    description:
+      "You work with the engineers and designers building your project, not a layer of people relaying messages between you and them. Questions get answered by someone who knows the answer, not someone who has to go ask.",
+  },
+  {
+    icon: Users2,
+    title: "Small team, senior work",
+    description:
+      "We stay deliberately small so every project gets senior attention instead of being spread thin across a bench of juniors learning on your budget.",
+  },
+  {
+    icon: Lock,
+    title: "You own everything",
+    description:
+      "Code, infrastructure, credentials, and design files are yours from day one. No lock-in, and no dependency on us to keep it running after the engagement ends.",
+  },
+  {
+    icon: FileCheck2,
+    title: "Scope and price agreed up front",
+    description:
+      "We scope the work before we start, so you know the cost and timeline before anything begins — not somewhere in the middle of an open-ended invoice.",
+  },
 ];
 
 const faqItems = [
@@ -91,13 +98,13 @@ export default function Home() {
               <div className="mt-9 flex flex-wrap items-center gap-4">
                 <Link
                   href="/contact"
-                  className="rounded-sm bg-signal px-6 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)]"
+                  className="rounded-sm bg-signal px-6 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)] active:scale-95"
                 >
                   Start a project
                 </Link>
                 <Link
                   href="/projects"
-                  className="rounded-sm border border-panel-line px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-signal hover:text-signal"
+                  className="rounded-sm border border-panel-line px-6 py-3 text-sm font-medium text-ink transition-colors hover:border-signal hover:text-signal active:scale-95"
                 >
                   See our work
                 </Link>
@@ -196,131 +203,52 @@ export default function Home() {
       </section>
 
       {/* Why us */}
-      <section className="border-y border-panel-line/60 bg-panel/40">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+      <section className="relative overflow-hidden border-y border-panel-line/60 bg-panel/40">
+        <AmbientBlobs />
+        <div className="relative mx-auto max-w-6xl px-6 py-20 md:py-28">
           <Reveal>
             <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
               Why teams work with us
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-10 md:grid-cols-2">
-            <Reveal delay={0.05}>
-              <h3 className="font-display text-lg font-medium">
-                Direct access, no account managers
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                You work with the engineers and designers building your
-                project, not a layer of people relaying messages between
-                you and them. Questions get answered by someone who knows
-                the answer, not someone who has to go ask.
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h3 className="font-display text-lg font-medium">
-                Small team, senior work
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                We stay deliberately small so every project gets senior
-                attention instead of being spread thin across a bench of
-                juniors learning on your budget.
-              </p>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <h3 className="font-display text-lg font-medium">
-                You own everything
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                Code, infrastructure, credentials, and design files are
-                yours from day one. No lock-in, and no dependency on us to
-                keep it running after the engagement ends.
-              </p>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <h3 className="font-display text-lg font-medium">
-                Scope and price agreed up front
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                We scope the work before we start, so you know the cost
-                and timeline before anything begins — not somewhere in the
-                middle of an open-ended invoice.
-              </p>
-            </Reveal>
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {whyUs.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <Reveal key={item.title} delay={i * 0.08} className="h-full">
+                  <div className="group flex h-full items-start gap-4 rounded-sm border border-panel-line bg-void/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-signal/50 hover:shadow-lg hover:shadow-signal/5">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-panel-line bg-panel/60 text-signal transition-transform duration-300 group-hover:scale-110 group-hover:border-signal/50">
+                      <Icon size={20} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-medium">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
-      </section>
-
-      {/* Featured projects teaser */}
-      <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-        <Reveal className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-              Recent work
-            </h2>
-            <p className="mt-3 max-w-lg text-ink-muted">
-              A few projects we've shipped for clients recently.
-            </p>
-          </div>
-          <Link
-            href="/projects"
-            className="flex items-center gap-1.5 text-sm font-medium text-signal hover:text-signal-dim"
-          >
-            All projects
-            <ArrowUpRight size={16} />
-          </Link>
-        </Reveal>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {featuredProjects.map((project, i) => (
-            <Reveal key={i} delay={i * 0.08} className="h-full">
-              <TiltCard className="h-full">
-                <div className="group flex h-full flex-col justify-between rounded-sm border border-panel-line bg-panel/40 p-6 transition-all hover:-translate-y-1 hover:border-signal/50 hover:shadow-lg hover:shadow-signal/5">
-                  <div>
-                    <p className="text-xs uppercase tracking-wide text-signal">
-                      {project.category}
-                    </p>
-                    <h3 className="mt-3 font-display text-lg font-medium">
-                      {project.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                      {project.description}
-                    </p>
-                  </div>
-                  <div className="mt-6 flex items-center gap-1.5 text-sm font-medium text-ink-muted group-hover:text-signal">
-                    View case study
-                    <ArrowRight size={14} />
-                  </div>
-                </div>
-              </TiltCard>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* Testimonial placeholder */}
-      <section className="border-y border-panel-line/60 bg-panel/40">
-        <Reveal className="mx-auto max-w-3xl px-6 py-20 text-center md:py-24">
-          <Quote className="mx-auto text-signal" size={32} strokeWidth={1.5} />
-          <p className="mt-6 font-display text-xl font-medium leading-relaxed md:text-2xl">
-            "Replace this with a real quote from a client once you have
-            one — a specific sentence about the problem you solved beats a
-            generic compliment."
-          </p>
-          <p className="mt-6 text-sm text-ink-muted">
-            Client name, Title at Company
-          </p>
-        </Reveal>
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-4xl px-6 py-20 md:py-28">
-        <Reveal>
-          <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
-            Common questions
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1} className="mt-10">
-          <Faq items={faqItems} />
-        </Reveal>
+      <section className="relative overflow-hidden px-6 py-20 md:py-28">
+        <AmbientBlobs />
+        <div className="relative mx-auto max-w-4xl">
+          <Reveal>
+            <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
+              Common questions
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1} className="mt-10">
+            <Faq items={faqItems} />
+          </Reveal>
+        </div>
       </section>
 
       {/* CTA */}
@@ -335,7 +263,7 @@ export default function Home() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)]"
+            className="mt-8 inline-block rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)] active:scale-95"
           >
             Get in touch
           </Link>

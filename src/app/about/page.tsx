@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Target, Users2, ShieldCheck, Zap } from "lucide-react";
 import TypewriterHeading from "@/components/TypewriterHeading";
+import StaggerWords from "@/components/StaggerWords";
 import Reveal from "@/components/Reveal";
 import CircuitBackground from "@/components/CircuitBackground";
+import AmbientBlobs from "../../components/AmbientBlobs";
 import { team } from "@/lib/team";
 
 const description =
@@ -61,15 +64,23 @@ export default function AboutPage() {
             text="A small team that would rather do a few things well."
             className="mt-5 min-h-[2.4em] max-w-2xl font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl"
           />
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted">
-            NeuroBYT is a software, AI, and digital engineering agency built
-            around a simple idea: most businesses don't need a huge agency
-            with layers of account managers — they need a small group of
-            people who are genuinely good at the work and easy to reach.
-            [Replace this paragraph with your actual founding story — why
-            you started NeuroBYT, what problem you kept seeing that made you
-            want to build this.]
-          </p>
+          <StaggerWords
+            delay={1.1}
+            text="A small, senior team built around one idea: skip the account-management overhead, and just do good work directly with the people who need it."
+            className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted"
+          />
+
+          <Reveal delay={0.2} className="group relative mt-12 h-[320px] w-full overflow-hidden rounded-sm border border-panel-line md:h-[440px]">
+            <Image
+              src="/about.webp"
+              alt="The NeuroBYT team at work"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 1152px"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-void/30 via-transparent to-transparent" />
+          </Reveal>
         </div>
       </section>
 
@@ -79,41 +90,39 @@ export default function AboutPage() {
           <h2 className="font-display text-2xl font-semibold tracking-tight md:text-3xl">
             Why we exist
           </h2>
+        </Reveal>
+        <Reveal delay={0.08}>
           <p className="mt-5 text-base leading-relaxed text-ink-muted">
-            [Placeholder] Too many software projects fail not because the
-            engineering was hard, but because of poor communication,
-            scope creep, and vendors who disappear the moment the invoice
-            is paid. We started NeuroBYT to do the opposite — clear scope,
-            direct communication, and a team that sticks around after
-            launch. Replace this section with your own reasoning: what
-            gap in the market you saw, and what you wanted to be
-            different about how NeuroBYT operates.
+          NeuroBYT is a software, AI, and digital engineering agency built around a simple idea: most businesses don't need a huge agency with layers of account managers — 
+          they need a small group of people who are genuinely good at the work and easy to reach. 
+          We started NeuroBYT after seeing the same pattern play out too many times:
+           skilled engineers buried under management overhead, and clients left guessing what was actually happening with their project.
+          We built something smaller and more direct instead.
           </p>
+        </Reveal>
+        <Reveal delay={0.16}>
           <p className="mt-4 text-base leading-relaxed text-ink-muted">
-            [Placeholder] We work across web, mobile, cloud, and AI, but the
-            common thread is the same on every project: understand the
-            actual problem before writing a line of code, build something
-            that holds up under real use, and stay accountable for it
-            after it ships.
+          We work across web, mobile, cloud, and AI, but the approach is the same on every project: understand the actual problem before writing a line of code, build something that holds up under real use, and stay accountable for it after it ships. If it doesn't meet that bar, we don't consider it done.
           </p>
         </Reveal>
       </section>
 
       {/* Values */}
-      <section className="border-y border-panel-line/60 bg-panel/40">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <section className="relative overflow-hidden border-y border-panel-line/60 bg-panel/40">
+        <AmbientBlobs />
+        <div className="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
           <Reveal>
             <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
               How we think about the work
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {values.map((v, i) => {
               const Icon = v.icon;
               return (
-                <Reveal key={v.title} delay={i * 0.08}>
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-panel-line bg-void text-signal">
+                <Reveal key={v.title} delay={i * 0.08} className="h-full">
+                  <div className="group flex h-full items-start gap-4 rounded-sm border border-panel-line bg-void/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-signal/50 hover:shadow-lg hover:shadow-signal/5">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-panel-line bg-panel/60 text-signal transition-transform duration-300 group-hover:scale-110 group-hover:border-signal/50">
                       <Icon size={20} strokeWidth={1.5} />
                     </div>
                     <div>
@@ -132,7 +141,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team */}
+      {/* Team — temporarily disabled
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-20">
         <Reveal>
           <h2 className="font-display text-3xl font-semibold tracking-tight md:text-4xl">
@@ -165,6 +174,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+      */}
 
       {/* CTA */}
       <section className="border-t border-panel-line/60">
@@ -177,7 +187,7 @@ export default function AboutPage() {
           </p>
           <Link
             href="/contact"
-            className="mt-8 inline-block rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-transform hover:-translate-y-0.5 hover:bg-signal-dim"
+            className="mt-8 inline-block rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)] active:scale-95"
           >
             Get in touch
           </Link>

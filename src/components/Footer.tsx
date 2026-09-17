@@ -20,11 +20,15 @@ export default function Footer() {
             A software engineering agency building web, mobile, cloud, and AI
             products for teams that need to move fast.
           </p>
-          <div className="mt-5 flex gap-4 text-sm text-ink-muted">
+
+          {/* Social Media Links */}
+
+          {/* <div className="mt-5 flex gap-4 text-sm text-ink-muted">
             <a href="#" className="hover:text-signal">LinkedIn</a>
             <a href="#" className="hover:text-signal">GitHub</a>
             <a href="#" className="hover:text-signal">X</a>
-          </div>
+          </div> */}
+
         </div>
 
         <div>
@@ -71,7 +75,7 @@ export default function Footer() {
                 href="mailto:hello@neurobyt.com"
                 className="text-sm text-ink-muted hover:text-signal"
               >
-                hello@neurobyt.com
+                neurobyt@gmail.com
               </a>
             </li>
           </ul>
