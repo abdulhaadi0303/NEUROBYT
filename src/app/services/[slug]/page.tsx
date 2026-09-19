@@ -77,7 +77,7 @@ export default async function ServiceDetailPage({
 
           <Link
             href="/contact"
-            className="mt-9 inline-block rounded-sm bg-signal px-6 py-3 text-sm font-medium text-void transition-transform hover:-translate-y-0.5 hover:bg-signal-dim"
+            className="mt-9 inline-block rounded-sm bg-signal px-6 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)] active:scale-95"
           >
             Start a project
           </Link>
