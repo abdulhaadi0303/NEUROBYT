@@ -6,6 +6,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
   const primaryServices = services.slice(0, 6);
 
+
   return (
     <footer className="border-t border-panel-line/60 bg-void">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 md:grid-cols-[1.2fr_1fr_1fr]">
@@ -72,10 +73,10 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="mailto:hello@neurobyt.com"
+                href="mailto:neurobyt.tech@gmail.com"
                 className="text-sm text-ink-muted hover:text-signal"
               >
-                neurobyt@gmail.com
+                neurobyt.tech@gmail.com
               </a>
             </li>
           </ul>

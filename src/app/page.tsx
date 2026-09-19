@@ -84,15 +84,15 @@ export default function Home() {
           <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-16 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pb-24 md:pt-24">
             <div>
               <p className="text-sm text-ink-muted">
-                Software, AI & digital engineering
+              One team. Every skill your business needs.
               </p>
               <TypewriterHeading
-                text="We build and automate the systems your business runs on."
+                text="Building the technology your business needs to grow faster"
                 className="mt-5 min-h-[3.3em] font-display text-4xl font-semibold leading-[1.1] tracking-tight md:text-5xl lg:text-6xl"
               />
               <StaggerWords
                 delay={1.3}
-                text="NeuroBYT is a small, senior team shipping websites, web apps, custom software, and AI-driven automation for businesses that need it done right the first time. No account managers relaying messages, no junior engineers learning on your budget — just the people actually building your project, from the first call to long after launch."
+                text="NeuroBYT brings together specialists across web, AI, data, and business strategy — one team that understands your problem as a business first, and solves it as engineers second. Whether you're a local business, a growing startup, or an international company, you work directly with the people building your project, not a chain of account managers relaying messages."
                 className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted"
               />
               <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -129,10 +129,8 @@ export default function Home() {
               What we do
             </h2>
             <p className="mt-3 max-w-lg text-ink-muted">
-              One team covering the full stack — design, engineering,
-              marketing, and strategy — from a marketing site to custom AI
-              systems, so you're not juggling five vendors and five
-              invoices.
+            One team covering the full stack — design, engineering, marketing, and business strategy
+             — so what gets built actually solves your problem, not just a technical version of it.
             </p>
           </div>
           <Link

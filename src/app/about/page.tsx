@@ -10,7 +10,7 @@ import AmbientBlobs from "../../components/AmbientBlobs";
 import { team } from "@/lib/team";
 
 const description =
-  "NeuroBYT is a small, senior software and AI engineering team. Here's who we are and how we work.";
+  "NeuroBYT is a one-stop software, AI, and business technology team — built by people who understand your problem as a business first, and solve it as engineers second.";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -102,7 +102,11 @@ export default function AboutPage() {
         </Reveal>
         <Reveal delay={0.16}>
           <p className="mt-4 text-base leading-relaxed text-ink-muted">
-          We work across web, mobile, cloud, and AI, but the approach is the same on every project: understand the actual problem before writing a line of code, build something that holds up under real use, and stay accountable for it after it ships. If it doesn't meet that bar, we don't consider it done.
+          We work across web, software, AI, data, and even the business strategy behind it —
+           because understanding your business is just as important as writing the code.
+            Every project starts with the actual problem, not an assumption about it,
+             and we build something that holds up under real use and stays accountable after it ships. 
+          If it doesn't meet that bar, we don't consider it done.
           </p>
         </Reveal>
       </section>

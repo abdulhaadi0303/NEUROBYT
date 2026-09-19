@@ -5,8 +5,11 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { services } from "@/lib/services";
 import TypewriterHeading from "@/components/TypewriterHeading";
+import StaggerWords from "@/components/StaggerWords";
 import Reveal from "@/components/Reveal";
 import CircuitBackground from "@/components/CircuitBackground";
+import AmbientBlobs from "@/components/AmbientBlobs";
+import TiltCard from "@/components/TiltCard";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -74,9 +77,11 @@ export default async function ProjectDetailPage({
             className="mt-4 min-h-[1.3em] font-display text-3xl font-semibold leading-[1.15] tracking-tight md:text-5xl"
           />
 
-          <p className="mt-6 text-lg leading-relaxed text-ink-muted">
-            {project.summary}
-          </p>
+          <StaggerWords
+            delay={1.0}
+            text={project.summary}
+            className="mt-6 text-lg leading-relaxed text-ink-muted"
+          />
           <p className="mt-4 text-sm text-ink-muted">
             Client: <span className="text-ink">{project.client}</span>
           </p>
@@ -113,8 +118,9 @@ export default async function ProjectDetailPage({
       </section>
 
       {/* Services used */}
-      <section className="border-y border-panel-line/60 bg-panel/40">
-        <div className="mx-auto max-w-4xl px-6 py-12 md:py-16">
+      <section className="relative overflow-hidden border-y border-panel-line/60 bg-panel/40">
+        <AmbientBlobs />
+        <div className="relative mx-auto max-w-4xl px-6 py-12 md:py-16">
           <Reveal>
             <h2 className="text-sm font-medium text-ink-muted">
               Services used
@@ -143,24 +149,26 @@ export default async function ProjectDetailPage({
         </Reveal>
         <div className="mt-8 grid gap-6 sm:grid-cols-2">
           {otherProjects.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.08}>
-              <Link
-                href={`/projects/${p.slug}`}
-                className="group flex h-full flex-col justify-between rounded-sm border border-panel-line bg-panel/40 p-6 transition-colors hover:border-signal/50"
-              >
-                <div>
-                  <p className="text-xs uppercase tracking-wide text-signal">
-                    {p.category}
-                  </p>
-                  <h3 className="mt-3 font-display text-base font-medium">
-                    {p.title}
-                  </h3>
-                </div>
-                <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-ink-muted group-hover:text-signal">
-                  Read case study
-                  <ArrowRight size={14} />
-                </div>
-              </Link>
+            <Reveal key={p.slug} delay={i * 0.08} className="h-full">
+              <TiltCard className="h-full">
+                <Link
+                  href={`/projects/${p.slug}`}
+                  className="group flex h-full flex-col justify-between rounded-sm border border-panel-line bg-panel/40 p-6 transition-colors hover:border-signal/50"
+                >
+                  <div>
+                    <p className="text-xs uppercase tracking-wide text-signal">
+                      {p.category}
+                    </p>
+                    <h3 className="mt-3 font-display text-base font-medium">
+                      {p.title}
+                    </h3>
+                  </div>
+                  <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-ink-muted group-hover:text-signal">
+                    Read case study
+                    <ArrowRight size={14} />
+                  </div>
+                </Link>
+              </TiltCard>
             </Reveal>
           ))}
         </div>
@@ -174,7 +182,7 @@ export default async function ProjectDetailPage({
           </h2>
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-transform hover:-translate-y-0.5 hover:bg-signal-dim"
+            className="mt-8 inline-flex items-center gap-2 rounded-sm bg-signal px-7 py-3 text-sm font-medium text-void transition-all hover:-translate-y-0.5 hover:bg-signal-dim hover:shadow-[0_0_30px_rgba(118,185,0,0.35)] active:scale-95"
           >
             Start a project
             <ArrowRight size={16} />

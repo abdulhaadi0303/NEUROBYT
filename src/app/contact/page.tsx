@@ -27,18 +27,19 @@ const contactDetails = [
   {
     icon: Mail,
     label: "Email",
-    value: "neurobyt@gmail.com.com",
-    href: "mailto:neurobyt@gmail.com",
+    value: "neurobyt.tech@gmail.com",
+    href: "mailto:neurobyt.tech@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+92 313 5536110", // placeholder — replace with real number
+    value: "+92 313 5536110",
+    href: "tel:+923135536110",
   },
   {
     icon: MapPin,
     label: "Location",
-    value: "Mirpur,AJK,Pakistan", // placeholder — replace with real location
+    value: "Mirpur, AJK, Pakistan", // placeholder — replace with real location
     href: undefined,
   },
   {
@@ -156,10 +157,10 @@ export default function ContactPage() {
               <p className="text-sm leading-relaxed text-ink-muted">
                 Prefer email? Send the details directly to{" "}
                 <a
-                  href="mailto:hello@neurobyt.com"
+                  href="mailto:neurobyt.tech@gmail.com"
                   className="text-signal hover:text-signal-dim"
                 >
-                  neurobyt@gmail.com
+                  neurobyt.tech@gmail.com
                 </a>{" "}
                 and we'll pick it up just as quickly.
               </p>
